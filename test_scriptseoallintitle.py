@@ -23,9 +23,6 @@ class TestScriptseoallintitle():
     self.driver.set_window_size(1280, 642)
     self.driver.find_element(By.NAME, "q").send_keys("allintitle: keyword")
     self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
-    self.driver.find_element(By.ID, "result-stats").click()
-    self.driver.find_element(By.ID, "result-stats").click()
     element = self.driver.find_element(By.ID, "result-stats")
-    actions = ActionChains(self.driver)
-    actions.double_click(element).perform()
+    print(element.text)
   
