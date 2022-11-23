@@ -23,7 +23,7 @@ class TestSeoallintitle():
         self.driver.quit()
 
     def test_seoallintitle(self):
-        self.driver.get("https://www.google.com/search?q=''")
+        self.driver.get("https://www.google.com/search?q=%20")
         self.driver.set_window_size(1050, 702)
         self.bypass_accept_cookie()
         self.write_new_csv()
