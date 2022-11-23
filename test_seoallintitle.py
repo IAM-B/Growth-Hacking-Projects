@@ -24,8 +24,12 @@ class TestSeoallintitle():
     def test_seoallintitle(self):
         self.driver.get("https://www.google.com/webhp")
         self.driver.set_window_size(1050, 702)
-        element = self.driver.find_element(By.ID, "L2AGLb").click()
+        self.bypass_accept_cookie()
         self.all_keywords()
+        
+    def bypass_accept_cookie(self):
+        # TODO: find more stable way, because id could change
+        self.driver.find_element(By.ID, "L2AGLb").click()
 
     def get_keywords(self):
         return [
