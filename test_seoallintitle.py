@@ -2,6 +2,7 @@
 import pytest
 import time
 import json
+import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -26,7 +27,10 @@ class TestSeoallintitle():
     self.driver.find_element(By.NAME, "q").send_keys("allintitle: keyword")
     self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
     element = self.driver.find_element(By.ID, "result-stats")
-    print(element.text)  
+    text = element.text
+    pattern = r"Environ (.*) résultats" 
+    resultat = re.match(pattern, text)
+    print(resultat.groups()[0].replace("\u202f", ""))
 
 
 
