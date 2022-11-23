@@ -24,6 +24,7 @@ class TestSeoallintitle():
     def test_seoallintitle(self):
         self.driver.get("https://www.google.com/webhp")
         self.driver.set_window_size(1050, 702)
+        element = self.driver.find_element(By.ID, "L2AGLb").click()
         self.all_keywords()
 
     def get_keywords(self):
