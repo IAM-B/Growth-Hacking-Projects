@@ -9,6 +9,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
+from selenium.common import exceptions
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
@@ -22,14 +23,18 @@ class TestSeoallintitle():
         self.driver.quit()
 
     def test_seoallintitle(self):
-        self.driver.get("https://www.google.com/webhp")
+        self.driver.get("https://www.google.com/search?q=''")
         self.driver.set_window_size(1050, 702)
         self.bypass_accept_cookie()
         self.all_keywords()
         
     def bypass_accept_cookie(self):
-        # TODO: find more stable way, because id could change
-        self.driver.find_element(By.ID, "L2AGLb").click()
+        try:
+            # TODO: find more stable way, because id could change
+            self.driver.find_element(By.ID, "L2AGLb").click()
+        except exceptions.NoSuchElementException:
+            # If no condition to accept, just continue
+            pass
 
     def get_keywords(self):
         return [
@@ -46,10 +51,17 @@ class TestSeoallintitle():
             self.get_result_for_all_keywords(keyword) 
 
     def get_result_for_all_keywords(self, keyword):
-        self.driver.find_element(By.NAME, "q").send_keys("allintitle: {}".format(keyword))
+        self.empty_last_keyword()
+        self.driver.find_element(By.CSS_SELECTOR, "[aria-label='Effacer']")
+        self.driver.find_element(By.NAME, "q").send_keys(
+            "allintitle: {}".format(keyword)
+        )
         self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
         element = self.driver.find_element(By.ID, "result-stats")
         text = element.text
         pattern = r"Environ (.*) résultats" 
         resultat = re.match(pattern, text)
         print(resultat.groups()[0].replace("\u202f", ""))
+
+    def empty_last_keyword(self):
+        self.driver.find_element(By.CSS_SELECTOR, ".ExCKkf path").click()
