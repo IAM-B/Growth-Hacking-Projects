@@ -1,2 +1,2 @@
 run:
-	python -m pytest -s >> final.csv
+	python -m pytest -s
