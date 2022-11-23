@@ -1,0 +1,77 @@
+1669118513070	geckodriver	INFO	Listening on 127.0.0.1:55759
+1669118513623	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "38685" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile4T0umv"
+Gtk-Message: 13:01:53.688: Failed to load module "appmenu-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1669118514088	Marionette	INFO	Marionette enabled
+1669118514091	Marionette	INFO	Listening on port 37841
+Read port: 37841
+WebDriver BiDi listening on ws://127.0.0.1:38685
+1669118514172	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile4T0umv/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:38685/devtools/browser/3ae835b6-2524-4b8a-9f4f-fbb424edae70
+1669118525378	Marionette	INFO	Stopped listening on port 37841
+1669141544076	geckodriver	INFO	Listening on 127.0.0.1:37347
+1669141544108	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "59205" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilemC6H0Z"
+Gtk-Message: 19:25:44.163: Failed to load module "appmenu-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1669141544567	Marionette	INFO	Marionette enabled
+1669141544570	Marionette	INFO	Listening on port 40589
+Read port: 40589
+WebDriver BiDi listening on ws://127.0.0.1:59205
+1669141544666	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilemC6H0Z/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:59205/devtools/browser/02bd3e7e-fa39-4098-8f57-0cfdea724e93
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.google.com."
+JavaScript warning: https://accounts.google.com/v3/signin/identifier?dsh=S-1106703448%3A1669141570205264&continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=ARgdvAtU2yZuFhZZuBM9LagOO25aBp8z6gOX8oZr7Xl7aDoPJeuBpg5sTwrM8xnRRU_gzos1HIwZ line 611 > injectedScript line 2 > eval line 6178 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://accounts.google.com."
+Marionette threw an error: TypeError: this.curBrowser.contentBrowser is null
+GeckoDriver.prototype.navigateTo@chrome://remote/content/marionette/driver.sys.mjs:844:3
+
+1669141605120	Marionette	INFO	Stopped listening on port 40589
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1669141744970	geckodriver	INFO	Listening on 127.0.0.1:46367
+1669141745012	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "58187" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileo50RYA"
+Gtk-Message: 19:29:05.064: Failed to load module "appmenu-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1669141745468	Marionette	INFO	Marionette enabled
+1669141745471	Marionette	INFO	Listening on port 40001
+Read port: 40001
+WebDriver BiDi listening on ws://127.0.0.1:58187
+1669141745551	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileo50RYA/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:58187/devtools/browser/10a1eb5d-7f87-4a10-b2dc-a02a321c6529
+JavaScript error: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D&q=EgTV-Gz3GImq9JsGIjAurkq-lmmWwV2o6ArTaT8KUYqLt-5AWEjGZMVGUE9pVV-F9mJBSUZ5mvivoo5av_kyAXI, line 1: SyntaxError: expected expression, got ','
+1669141785192	geckodriver	INFO	Listening on 127.0.0.1:59089
+1669141785222	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "34685" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileqjMaDS"
+Gtk-Message: 19:29:45.303: Failed to load module "appmenu-gtk-module"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1669141785856	Marionette	INFO	Marionette enabled
+1669141785861	Marionette	INFO	Listening on port 44599
+Read port: 44599
+WebDriver BiDi listening on ws://127.0.0.1:34685
+1669141785970	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileqjMaDS/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:34685/devtools/browser/bb594f8f-754c-40e9-ade4-bc7675aa812d
+JavaScript error: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D&q=EgTV-Gz2GLWq9JsGIjAKAdtP-7vaUhKADahdyzGc7hK8SSBJOnQBcxGS5-wjlLijl8CD_zcolPaZ-I7qMK8yAXI, line 1: SyntaxError: expected expression, got ','
+1669141827361	Marionette	INFO	Stopped listening on port 44599
+1669141857903	Marionette	INFO	Stopped listening on port 40001
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+Read port: 40247
+WebDriver BiDi listening on ws://127.0.0.1:60167
+1669163367663	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilegWTBHZ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:60167/devtools/browser/a2a46e14-bdd8-4f52-9c0e-d89fd24ea304
+JavaScript error: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D&q=EgTV-Gz2GP3S9ZsGIjB4BzW9o5IvaU4a24ckBgCuRTtDbz8MZJusQx95C463mQjXvCBDPdTk0LEt3JZBeXoyAXI, line 1: SyntaxError: expected expression, got ','
+1669163372790	Marionette	INFO	Stopped listening on port 40247

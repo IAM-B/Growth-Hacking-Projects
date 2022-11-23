@@ -10,19 +10,23 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-class TestScriptseoallintitle():
+
+class TestSeoallintitle():
   def setup_method(self, method):
-    self.driver = webdriver.Firefox()
+    self.driver = webdriver.Chrome()
     self.vars = {}
   
   def teardown_method(self, method):
     self.driver.quit()
   
-  def test_scriptseoallintitle(self):
+  def test_seoallintitle(self):
     self.driver.get("https://www.google.com/webhp")
-    self.driver.set_window_size(1280, 642)
+    self.driver.set_window_size(1050, 702)
+    element = self.driver.find_element(By.ID, "L2AGLb").click()
     self.driver.find_element(By.NAME, "q").send_keys("allintitle: keyword")
     self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
     element = self.driver.find_element(By.ID, "result-stats")
-    print(element.text)
-  
+    print(element.text)  
+
+
+
