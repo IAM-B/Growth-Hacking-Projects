@@ -13,18 +13,44 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class TestSeoallintitle():
+  
   def setup_method(self, method):
     self.driver = webdriver.Chrome()
     self.vars = {}
   
   def teardown_method(self, method):
     self.driver.quit()
-  
+
   def test_seoallintitle(self):
     self.driver.get("https://www.google.com/webhp")
     self.driver.set_window_size(1050, 702)
     element = self.driver.find_element(By.ID, "L2AGLb").click()
-    self.driver.find_element(By.NAME, "q").send_keys("allintitle: keyword")
+    self.driver.find_element(By.NAME, "q").send_keys("allintitle: keyword0")
+    self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
+    element = self.driver.find_element(By.ID, "result-stats")
+    text = element.text
+    pattern = r"Environ (.*) résultats" 
+    resultat = re.match(pattern, text)
+    print(resultat.groups()[0].replace("\u202f", ""))
+
+  def get_keywords(self):
+      return [
+        "keyword1",
+        "keyword2",
+        "keyword3",
+        "keyword4",
+        "keyword5",
+        "keyword6",
+      ]
+
+  def all_keywords(self):
+    for keyword in self.get_keywords():
+      self.get_result_for_all_keywords(keyword) 
+
+  def get_result_for_all_keywords(self, keyword):
+    self.driver.get("https://www.google.com/webhp")
+    self.driver.set_window_size(1050, 702)
+    self.driver.find_element(By.NAME, "q").send_keys("allintitle: {}".format(keyword))
     self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
     element = self.driver.find_element(By.ID, "result-stats")
     text = element.text
