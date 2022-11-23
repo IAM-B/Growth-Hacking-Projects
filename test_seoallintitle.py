@@ -24,14 +24,7 @@ class TestSeoallintitle():
     def test_seoallintitle(self):
         self.driver.get("https://www.google.com/webhp")
         self.driver.set_window_size(1050, 702)
-        element = self.driver.find_element(By.ID, "L2AGLb").click()
-        self.driver.find_element(By.NAME, "q").send_keys("allintitle: keyword0")
-        self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
-        element = self.driver.find_element(By.ID, "result-stats")
-        text = element.text
-        pattern = r"Environ (.*) résultats" 
-        resultat = re.match(pattern, text)
-        print(resultat.groups()[0].replace("\u202f", ""))
+        self.all_keywords()
 
     def get_keywords(self):
         return [
@@ -48,8 +41,6 @@ class TestSeoallintitle():
             self.get_result_for_all_keywords(keyword) 
 
     def get_result_for_all_keywords(self, keyword):
-        self.driver.get("https://www.google.com/webhp")
-        self.driver.set_window_size(1050, 702)
         self.driver.find_element(By.NAME, "q").send_keys("allintitle: {}".format(keyword))
         self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
         element = self.driver.find_element(By.ID, "result-stats")
