@@ -26,7 +26,7 @@ class TestSeoallintitle():
         self.driver.get("https://www.google.com/search?q=''")
         self.driver.set_window_size(1050, 702)
         self.bypass_accept_cookie()
-        self.all_keywords()
+        self.write_new_csv()
         
     def bypass_accept_cookie(self):
         try:
@@ -35,22 +35,29 @@ class TestSeoallintitle():
         except exceptions.NoSuchElementException:
             # If no condition to accept, just continue
             pass
+        
+    def open_csv(self):
+        with open("keywords.csv", 'rb') as f:
+            content = f.read()
+        content = content.decode("utf-16")
+        rows = content.split("\n")
+        return rows[1:-1]
 
-    def get_keywords(self):
-        return [
-          "keyword1",
-          "keyword2",
-          "keyword3",
-          "keyword4",
-          "keyword5",
-          "keyword6",
-        ]
+    def get_keywords_and_monthly_average(self):
+        for row in self.open_csv():
+            values = row.split("\t")
+            keyword = values[0]
+            monthly_avg = int(values[2])
+            if 100 <= monthly_avg <= 5000:
+                yield keyword, monthly_avg
 
-    def all_keywords(self):
-        for keyword in self.get_keywords():
-            self.get_result_for_all_keywords(keyword) 
+    def write_new_csv(self):
+        for keyword, monthly_avg in self.get_keywords_and_monthly_average():
+            total_search = int(self.get_result_for_keyword(keyword))
+            if total_search > 5000:
+                print(keyword, monthly_avg, total_search, total_search / monthly_avg, sep=",")
 
-    def get_result_for_all_keywords(self, keyword):
+    def get_result_for_keyword(self, keyword):
         self.empty_last_keyword()
         self.driver.find_element(By.CSS_SELECTOR, "[aria-label='Effacer']")
         self.driver.find_element(By.NAME, "q").send_keys(
@@ -61,7 +68,7 @@ class TestSeoallintitle():
         text = element.text
         pattern = r"Environ (.*) résultats" 
         resultat = re.match(pattern, text)
-        print(resultat.groups()[0].replace("\u202f", ""))
+        return resultat.groups()[0].replace("\u202f", "")
 
     def empty_last_keyword(self):
         self.driver.find_element(By.CSS_SELECTOR, ".ExCKkf path").click()
