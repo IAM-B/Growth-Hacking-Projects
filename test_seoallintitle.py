@@ -18,7 +18,7 @@ with open("final.csv") as file:
     rows = csv.DictReader(file)
     already_scanned = {r["Keyword"] for r in rows}
 with open("not_good.txt") as file:
-    for word in file.read():
+    for word in file.readlines():
         already_scanned.add(word.strip())
 
 
@@ -84,7 +84,11 @@ class TestSeoallintitle():
             "allintitle: {}".format(keyword)
         )
         self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
-        element = self.driver.find_element(By.ID, "result-stats")
+        try:
+            element = self.driver.find_element(By.ID, "result-stats")
+        except exceptions.NoSuchElementException:
+            print(f"Results not found for: {keyword}")
+            return 0
         text = element.text
         pattern = r"Environ (.*) résultats" 
         resultat = re.match(pattern, text)
