@@ -90,9 +90,9 @@ class TestSeoallintitle():
             print(f"Results not found for: {keyword}")
             return 0
         text = element.text
-        pattern = r"Environ (.*) résultats" 
+        pattern = r"(Environ )?(.*) résultats" 
         resultat = re.match(pattern, text)
-        return resultat.groups()[0].replace("\u202f", "")
+        return resultat.groups()[1].replace("\u202f", "")
 
     def empty_last_keyword(self):
         self.driver.find_element(By.CSS_SELECTOR, ".ExCKkf path").click()
