@@ -11,6 +11,15 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.common import exceptions
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import csv
+
+
+with open("final.csv") as file:
+    rows = csv.DictReader(file)
+    already_scanned = {r["Keyword"] for r in rows}
+with open("not_good.txt") as file:
+    for word in file.read():
+        already_scanned.add(word.strip())
 
 
 class TestSeoallintitle():
@@ -39,14 +48,17 @@ class TestSeoallintitle():
     def open_csv(self):
         with open("keywords.csv", 'rb') as f:
             content = f.read()
-        content = content.decode("utf-16")
-        rows = content.split("\n")
+        content = content.decode("utf-8")
+        rows = content.split("\r\n")
         return rows[1:-1]
 
     def get_keywords_and_monthly_average(self):
         for row in self.open_csv():
-            values = row.split("\t")
+            values = row.split(",")
             keyword = values[0]
+            # breakpoint()
+            if keyword in already_scanned:
+                continue
             monthly_avg = int(values[2])
             if 100 <= monthly_avg <= 5000:
                 yield keyword, monthly_avg
@@ -61,6 +73,9 @@ class TestSeoallintitle():
                         sep=",",
                         file=file,
                     )
+            else:
+                with open("not_good.txt", "a") as file:
+                    print(keyword, file=file)
 
     def get_result_for_keyword(self, keyword):
         self.empty_last_keyword()
