@@ -66,7 +66,7 @@ class TestSeoallintitle():
     def write_new_csv(self):
         for keyword, monthly_avg in self.get_keywords_and_monthly_average():
             total_search = int(self.get_result_for_keyword(keyword))
-            if total_search > 5000:
+            if total_search < 5000:
                 with open("final.csv", "a") as file:
                     print(
                         keyword, monthly_avg, total_search, total_search / monthly_avg,
