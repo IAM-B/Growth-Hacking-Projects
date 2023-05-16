@@ -11,6 +11,15 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.common import exceptions
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import csv
+
+
+with open("final.csv") as file:
+    rows = csv.DictReader(file)
+    already_scanned = {r["Keyword"] for r in rows}
+with open("not_good.txt") as file:
+    for word in file.readlines():
+        already_scanned.add(word.strip())
 
 
 class TestSeoallintitle():
@@ -39,14 +48,17 @@ class TestSeoallintitle():
     def open_csv(self):
         with open("keywords.csv", 'rb') as f:
             content = f.read()
-        content = content.decode("utf-16")
-        rows = content.split("\n")
+        content = content.decode("utf-8")
+        rows = content.split("\r\n")
         return rows[1:-1]
 
     def get_keywords_and_monthly_average(self):
         for row in self.open_csv():
-            values = row.split("\t")
+            values = row.split(",")
             keyword = values[0]
+            # breakpoint()
+            if keyword in already_scanned:
+                continue
             monthly_avg = int(values[2])
             if 100 <= monthly_avg <= 5000:
                 yield keyword, monthly_avg
@@ -54,13 +66,16 @@ class TestSeoallintitle():
     def write_new_csv(self):
         for keyword, monthly_avg in self.get_keywords_and_monthly_average():
             total_search = int(self.get_result_for_keyword(keyword))
-            if total_search > 5000:
+            if total_search < 5000:
                 with open("final.csv", "a") as file:
                     print(
                         keyword, monthly_avg, total_search, total_search / monthly_avg,
                         sep=",",
                         file=file,
                     )
+            else:
+                with open("not_good.txt", "a") as file:
+                    print(keyword, file=file)
 
     def get_result_for_keyword(self, keyword):
         self.empty_last_keyword()
@@ -69,11 +84,15 @@ class TestSeoallintitle():
             "allintitle: {}".format(keyword)
         )
         self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
-        element = self.driver.find_element(By.ID, "result-stats")
+        try:
+            element = self.driver.find_element(By.ID, "result-stats")
+        except exceptions.NoSuchElementException:
+            print(f"Results not found for: {keyword}")
+            return 0
         text = element.text
-        pattern = r"Environ (.*) résultats" 
+        pattern = r"(Environ )?(.*) résultats" 
         resultat = re.match(pattern, text)
-        return resultat.groups()[0].replace("\u202f", "")
+        return resultat.groups()[1].replace("\u202f", "")
 
     def empty_last_keyword(self):
         self.driver.find_element(By.CSS_SELECTOR, ".ExCKkf path").click()
